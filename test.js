@@ -1,14 +1,26 @@
-function findMedianSortedArrays(nums2, nums2) {
-  let sumArr = nums.concat(nums2);
-  let arrLength = sumArr.length;
-
-  sumArr = sumArr.sort(function(a, b) {
-    return a - b;
-  });
-
-  if (arrLength % 2 === 1) {
-    return sumArr[Math.floor(arrLength / 2)];
-  } else {
-    return sumArr[arrLength / 2 - 1] + sumArr[arrLength / 2] / 2;
+function longestPalinDrome(s) {
+  function expandAroundCneter(left, right) {
+    while (left >= 0 && right < s.length && s[left] === s[right]) {
+      left--;
+      right++;
+    }
+    return s.slice(left + 1, right);
   }
+  if (!s) {
+    return "";
+  }
+  let longest = s[0];
+
+  for (var i = 0; i < s.length; i++) {
+    let odd = expandAroundCneter(i, i);
+    if (odd.length > longest.length) {
+      longest = odd;
+    }
+
+    let even = expandAroundCneter(i, i + 1);
+    if (longest.length < even.length) {
+      longest = even;
+    }
+  }
+  return longest;
 }
