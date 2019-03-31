@@ -1,11 +1,14 @@
-function lenOfLongStr(s) {
-  let map = {};
+function findMedianSortedArrays(nums2, nums2) {
+  let sumArr = nums.concat(nums2);
+  let arrLength = sumArr.length;
 
-  let value = s.split("").reduce((max, v, i) => {
-    let left = map[v] >= left ? map[v] + 1 : left;
-    map[v] = i;
-    return Math.max(max, i - left + 1);
-  }, 0);
+  sumArr = sumArr.sort(function(a, b) {
+    return a - b;
+  });
 
-  return value;
+  if (arrLength % 2 === 1) {
+    return sumArr[Math.floor(arrLength / 2)];
+  } else {
+    return sumArr[arrLength / 2 - 1] + sumArr[arrLength / 2] / 2;
+  }
 }
